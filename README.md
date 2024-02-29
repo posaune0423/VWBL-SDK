@@ -16,36 +16,36 @@ https://docs.vwbl-protocol.org
 
 ```typescript
 new VWBL({
-  web3,
-  contractAddress: "0x...",
+  signer,
+  contractAddress: '0x...',
   manageKeyType: ManageKeyType.VWBL_NETWORK_SERVER,
   uploadContentType: UploadContentType.S3,
   uploadMetadataType: UploadMetadataType.S3,
-  vwblNetworkUrl: "https://vwbl.network",
+  vwblNetworkUrl: 'https://vwbl.network',
   awsConfig: {
-    region: "ap-northeast-1",
-    idPoolId: "ap-northeast-1:...",
-    cloudFrontUrl: "https://xxx.cloudfront.net",
+    region: 'ap-northeast-1',
+    idPoolId: 'ap-northeast-1:...',
+    cloudFrontUrl: 'https://xxx.cloudfront.net',
     bucketName: {
-      metadata: "vwbl-metadata",
-      content: "vwbl-content",
+      metadata: 'vwbl-metadata',
+      content: 'vwbl-content',
     },
   },
-});
+})
 ```
 
 Constructor Options
 
-| name               | required                                                 | type                                       | description                                                                                                                                           |
-| ------------------ | -------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| web3               | true                                                     | [Web3](https://www.npmjs.com/package/web3) | web3 instance                                                                                                                                         |
-| contractAddress    | true                                                     | string                                     | VWBL nft's contract address                                                                                                                           |
-| vwblNetworkUrl     | true                                                     | string                                     | VWBL network's url                                                                                                                                    |
-| manageKeyType      | false                                                    | ManageKeyType                              | how to manage key, you can choose from <br> VWBL_NETWORK_SERVER <br> VWBL_NETWORK_CONSORTIUM(not implemented yet)<br> MY_SERVER(not implemented yet). |
-| uploadContentType  | flase                                                    | UploadContentType                          | where to upload content, you can choose from <br> S3 <br> IPFS <br> CUSTOM                                                                            |
-| uploadMetadataType | flase                                                    | UploadMetadataType                         | where to upload content, you can choose from <br> S3 <br> IPFS <br> CUSTOM                                                                            |
-| awsConfig          | true if you choose to upload content or metadata to S3   | AWSConfig                                  | AWSConfig \*1                                                                                                                                         |
-| ipfsNftStorageKey  | true if you choose to upload content or metadata to IPFS | string                                     | api key that given by nftstorage                                                                                                                      |
+| name               | required                                                 | type                                                     | description                                                                                                                                           |
+| ------------------ | -------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| signer             | true                                                     | [WalletClient](https://viem.sh/docs/clients/wallet.html) | web3 instance                                                                                                                                         |
+| contractAddress    | true                                                     | string                                                   | VWBL nft's contract address                                                                                                                           |
+| vwblNetworkUrl     | true                                                     | string                                                   | VWBL network's url                                                                                                                                    |
+| manageKeyType      | false                                                    | ManageKeyType                                            | how to manage key, you can choose from <br> VWBL_NETWORK_SERVER <br> VWBL_NETWORK_CONSORTIUM(not implemented yet)<br> MY_SERVER(not implemented yet). |
+| uploadContentType  | flase                                                    | UploadContentType                                        | where to upload content, you can choose from <br> S3 <br> IPFS <br> CUSTOM                                                                            |
+| uploadMetadataType | flase                                                    | UploadMetadataType                                       | where to upload content, you can choose from <br> S3 <br> IPFS <br> CUSTOM                                                                            |
+| awsConfig          | true if you choose to upload content or metadata to S3   | AWSConfig                                                | AWSConfig \*1                                                                                                                                         |
+| ipfsNftStorageKey  | true if you choose to upload content or metadata to IPFS | string                                                   | api key that given by nftstorage                                                                                                                      |
 
 AWSConfig
 
@@ -61,7 +61,7 @@ AWSConfig
 Signing is necessary before creating token or viewing contents.
 
 ```typescript
-await vwbl.sign();
+await vwbl.sign()
 ```
 
 ### create token
@@ -72,8 +72,8 @@ await vwbl.managedCreateToken(
   description,
   fileContent,
   thumbnailContent,
-  0 // royaltiesPercentage
-);
+  0, // royaltiesPercentage
+)
 ```
 
 Arguments
@@ -89,10 +89,10 @@ Arguments
 | uploadEncryptedFileCallback | true if uploadContentType is CUSTOM  | UploadEncryptedFile | you can custom upload function                                                                                                               |
 | uploadThumbnailCallback     | true if uploadContentType is CUSTOM  | UploadThumbnail     | you can custom upload function                                                                                                               |
 | uploadMetadataCallback      | true if uploadMetadataType is CUSTOM | UploadMetadata      | you can custom upload function                                                                                                               |
-| gasSettings                 | false                                | GasSettings         | you can custom gas settings                                                                                                               |
+| gasSettings                 | false                                | GasSettings         | you can custom gas settings                                                                                                                  |
 
 ### view contents ( get NFT metadata from given tokenId)
 
 ```typescript
-const token = await vwbl.getTokenById(tokenId);
+const token = await vwbl.getTokenById(tokenId)
 ```
