@@ -7,7 +7,6 @@ import {
   decodeEventLog,
   http,
 } from 'viem'
-import { mainnet } from 'viem/chains'
 import vwblABI from '../../../contract/VWBLERC721ERC2981'
 import vwblIPFSABI from '../../../contract/VWBLERC721ERC2981ForMetadata'
 import { getFeeSettingsBasedOnEnvironment } from '../../../util/transactionHelper'
@@ -22,7 +21,7 @@ export class VWBLNFT {
     this.contractAddress = address
     this.signer = walletClient
     this.client = createPublicClient({
-      chain: mainnet,
+      chain: this.signer.chain,
       transport: http(),
     })
   }
