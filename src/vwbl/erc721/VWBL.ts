@@ -1,4 +1,7 @@
+import { randomBytes } from 'crypto'
 import * as fs from 'fs'
+import { Stream } from 'stream'
+import { toHex } from 'viem'
 import { uploadEncryptedFile, uploadMetadata, uploadThumbnail } from '../../storage/aws'
 import {
   createRandomKey,
@@ -13,24 +16,21 @@ import {
 } from '../../util'
 import { VWBLBase } from '../base'
 import { VWBLNFT } from '../blockchain'
-import { ExtractMetadata, Metadata, PlainMetadata } from '../metadata'
+import { type ExtractMetadata, type Metadata, type PlainMetadata } from '../metadata'
 import {
-  ConstructorProps,
-  EncryptLogic,
-  FileOrPath,
-  GasSettings,
-  ProgressSubscriber,
+  type ConstructorProps,
+  type EncryptLogic,
+  type FileOrPath,
+  type GasSettings,
+  type ProgressSubscriber,
   StepStatus,
   UploadContentType,
-  UploadEncryptedFile,
-  UploadMetadata,
+  type UploadEncryptedFile,
+  type UploadMetadata,
   UploadMetadataType,
-  UploadThumbnail,
-  VWBLOption,
+  type UploadThumbnail,
+  type VWBLOption,
 } from '../types'
-import { toHex } from 'viem'
-import { randomBytes } from 'crypto'
-import { Stream } from 'stream'
 
 export class VWBL extends VWBLBase {
   public opts: VWBLOption

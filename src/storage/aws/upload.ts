@@ -1,13 +1,13 @@
+import * as fs from 'fs'
+import type * as Stream from 'stream'
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { fromCognitoIdentityPool, fromIni } from '@aws-sdk/credential-providers'
 import { Upload } from '@aws-sdk/lib-storage'
-import * as fs from 'fs'
-import * as Stream from 'stream'
 
 import { getMimeType } from '../../util'
-import { PlainMetadata } from '../../vwbl/metadata'
-import { EncryptLogic, FileOrPath } from '../../vwbl/types'
-import { AWSConfig } from './types'
+import { type PlainMetadata } from '../../vwbl/metadata'
+import { type EncryptLogic, type FileOrPath } from '../../vwbl/types'
+import { type AWSConfig } from './types'
 
 export const uploadEncryptedFile = async (
   fileName: string,
@@ -69,7 +69,7 @@ export const uploadThumbnail = async (
 
   const key = `data/${uuid}-${fileName}`
   const type = getMimeType(thumbnailImage)
-  const isRunningOnBrowser = typeof window !== 'undefined'
+  // const isRunningOnBrowser = typeof window !== 'undefined'
   const uploadCommand = new PutObjectCommand({
     Bucket: awsConfig.bucketName.content,
     Key: key,

@@ -1,9 +1,9 @@
-import { AWSConfig } from '../../storage/aws/types'
-import { BiconomyConfig } from './BiconomyConfigType'
-import { ManageKeyType } from './ManageKeyType'
-import { UploadContentType } from './UploadContentType'
-import { UploadMetadataType } from './UploadMetadataType'
-import { WalletClient } from 'viem'
+import { type WalletClient } from 'viem'
+import { type AWSConfig } from '../../storage/aws/types'
+import { type BiconomyConfig } from './BiconomyConfigType'
+import { type ManageKeyType } from './ManageKeyType'
+import { type UploadContentType } from './UploadContentType'
+import { type UploadMetadataType } from './UploadMetadataType'
 
 export type BaseConstructorProps = {
   contractAddress: `0x${string}`

@@ -1,17 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  PublicClient,
-  TransactionReceipt,
-  WalletClient,
+  type PublicClient,
+  type TransactionReceipt,
+  type WalletClient,
   createPublicClient,
   decodeEventLog,
-  getAbiItem,
   http,
 } from 'viem'
 import { mainnet } from 'viem/chains'
 import vwblABI from '../../../contract/VWBLERC721ERC2981'
 import vwblIPFSABI from '../../../contract/VWBLERC721ERC2981ForMetadata'
 import { getFeeSettingsBasedOnEnvironment } from '../../../util/transactionHelper'
-import { GasSettings } from '../../types'
+import { type GasSettings } from '../../types'
 
 export class VWBLNFT {
   private signer: WalletClient

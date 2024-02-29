@@ -1,6 +1,6 @@
-import * as Stream from 'stream'
+import type * as Stream from 'stream'
 
-import { EncryptLogic } from './EncryptLogic'
+import { type EncryptLogic } from './EncryptLogic'
 
 type UploadEncryptedFile = (
   fileName: string,

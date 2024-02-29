@@ -1,6 +1,6 @@
 import nodeCrypto from 'crypto'
-import crypto from 'crypto-js'
 import * as Stream from 'stream'
+import crypto from 'crypto-js'
 import * as uuid from 'uuid'
 
 import { toArrayBuffer } from './fileHelper'

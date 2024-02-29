@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import mime from 'mime'
+import { type FileOrPath } from '../vwbl/types'
 
-import { FileOrPath } from '../vwbl/types'
 const isRunningOnBrowser = typeof window !== 'undefined'
 
 export const toBase64FromBlob = async (blob: Blob): Promise<string> => {

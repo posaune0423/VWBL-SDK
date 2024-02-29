@@ -1,5 +1,7 @@
-import * as Stream from 'stream'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type * as Stream from 'stream'
 
+import { type WalletClient } from 'viem'
 import { UploadToIPFS } from '../storage/ipfs'
 import {
   createRandomKey,
@@ -12,8 +14,7 @@ import {
 } from '../util'
 import { VWBLApi } from './api'
 import { signToProtocol } from './blockchain'
-import { BaseConstructorProps, UploadContentType, UploadMetadataType } from './types'
-import { WalletClient } from 'viem'
+import { type BaseConstructorProps, UploadContentType, UploadMetadataType } from './types'
 
 const MESSAGE_TO_BE_SIGNED = 'Hello VWBL'
 

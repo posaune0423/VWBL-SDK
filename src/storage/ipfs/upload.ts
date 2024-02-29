@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Blob, NFTStorage } from 'nft.storage'
 
 import { getMimeType } from '../../util'
-import { PlainMetadata } from '../../vwbl/metadata'
-import { EncryptLogic, FileOrPath } from '../../vwbl/types'
+import { type PlainMetadata } from '../../vwbl/metadata'
+import { type EncryptLogic, type FileOrPath } from '../../vwbl/types'
 
 export class UploadToIPFS {
   private client: NFTStorage
