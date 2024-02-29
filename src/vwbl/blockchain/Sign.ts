@@ -1,22 +1,6 @@
-import { ethers } from "ethers";
-import { Web3 } from "web3";
+import { WalletClient } from 'viem'
 
-interface IEthersSigner {
-  signMessage(message: string | ethers.utils.Bytes): Promise<string>;
+export const signToProtocol = async (signer: WalletClient, signMessage: string) => {
+  if (!signer.account) throw new Error('Account is not defined')
+  return await signer.signMessage({ account: signer.account, message: signMessage })
 }
-
-const isEthersSigner = (signer: IEthersSigner): signer is IEthersSigner => {
-  return signer.signMessage !== undefined;
-};
-
-export const signToProtocol = async (
-  signer: Web3 | ethers.providers.JsonRpcSigner | ethers.Wallet,
-  signMessage: string
-) => {
-  if (isEthersSigner(signer as IEthersSigner)) {
-    return await (signer as IEthersSigner).signMessage(signMessage);
-  } else {
-    const myAddress = (await (signer as Web3).eth.getAccounts())[0];
-    return await (signer as Web3).eth.personal.sign(signMessage, myAddress, "");
-  }
-};

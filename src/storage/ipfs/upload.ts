@@ -1,40 +1,40 @@
-import { Blob, NFTStorage } from "nft.storage";
+import { Blob, NFTStorage } from 'nft.storage'
 
-import { getMimeType } from "../../util";
-import { PlainMetadata } from "../../vwbl/metadata";
-import { EncryptLogic, FileOrPath } from "../../vwbl/types";
+import { getMimeType } from '../../util'
+import { PlainMetadata } from '../../vwbl/metadata'
+import { EncryptLogic, FileOrPath } from '../../vwbl/types'
 
 export class UploadToIPFS {
-  private client: NFTStorage;
+  private client: NFTStorage
   constructor(ipfsNftStorageKey: string) {
-    this.client = new NFTStorage({ token: ipfsNftStorageKey });
+    this.client = new NFTStorage({ token: ipfsNftStorageKey })
   }
 
   async uploadEncryptedFile(encryptedContent: string | ArrayBuffer): Promise<string> {
-    const encryptedContentData = new Blob([encryptedContent]);
+    const encryptedContentData = new Blob([encryptedContent])
 
-    let cid;
+    let cid
     try {
-      cid = await this.client.storeBlob(encryptedContentData);
+      cid = await this.client.storeBlob(encryptedContentData)
     } catch (err: any) {
-      throw new Error(err);
+      throw new Error(err)
     }
 
-    return `https://nftstorage.link/ipfs/${cid}`;
+    return `https://nftstorage.link/ipfs/${cid}`
   }
 
   async uploadThumbnail(thumbnailImage: FileOrPath): Promise<string> {
-    const thumbnailFileType = getMimeType(thumbnailImage);
-    const thumbnailblob = new Blob([thumbnailImage], { type: thumbnailFileType });
+    const thumbnailFileType = getMimeType(thumbnailImage)
+    const thumbnailblob = new Blob([thumbnailImage], { type: thumbnailFileType })
 
-    let cid;
+    let cid
     try {
-      cid = await this.client.storeBlob(thumbnailblob);
+      cid = await this.client.storeBlob(thumbnailblob)
     } catch (err: any) {
-      throw new Error(err);
+      throw new Error(err)
     }
 
-    return `https://nftstorage.link/ipfs/${cid}`;
+    return `https://nftstorage.link/ipfs/${cid}`
   }
 
   async uploadMetadata(
@@ -43,7 +43,7 @@ export class UploadToIPFS {
     previewImageUrl: string,
     encryptedDataUrls: string[],
     mimeType: string,
-    encryptLogic: EncryptLogic
+    encryptLogic: EncryptLogic,
   ): Promise<string> {
     const metadata: PlainMetadata = {
       name,
@@ -52,18 +52,18 @@ export class UploadToIPFS {
       encrypted_data: encryptedDataUrls,
       mime_type: mimeType,
       encrypt_logic: encryptLogic,
-    };
-
-    const metadataJSON = JSON.stringify(metadata);
-    const metaDataBlob = new Blob([metadataJSON]);
-
-    let cid;
-    try {
-      cid = await this.client.storeBlob(metaDataBlob);
-    } catch (err: any) {
-      throw new Error(err);
     }
 
-    return `https://nftstorage.link/ipfs/${cid}`;
+    const metadataJSON = JSON.stringify(metadata)
+    const metaDataBlob = new Blob([metadataJSON])
+
+    let cid
+    try {
+      cid = await this.client.storeBlob(metaDataBlob)
+    } catch (err: any) {
+      throw new Error(err)
+    }
+
+    return `https://nftstorage.link/ipfs/${cid}`
   }
 }

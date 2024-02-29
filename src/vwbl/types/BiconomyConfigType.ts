@@ -1,4 +1,4 @@
 export type BiconomyConfig = {
-  apiKey: string;
-  forwarderAddress: string;
-};
+  apiKey: string
+  forwarderAddress: string
+}

@@ -1,5 +1,5 @@
 export type GasSettings = {
-  gasPrice?: number;
-  maxPriorityFeePerGas?: number;
-  maxFeePerGas?: number;
-};
+  gasPrice?: number | undefined
+  maxPriorityFeePerGas?: number | undefined
+  maxFeePerGas?: number | undefined
+}
